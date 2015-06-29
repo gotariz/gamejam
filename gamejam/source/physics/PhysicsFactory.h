@@ -20,6 +20,9 @@ class PhysicsFactory
         b2Body* createPlayer(float x = 0, float y = 0, void* userPointer = nullptr);
         b2Body* createKinematicPlayer(float x = 0, float y = 0, void* userPointer = nullptr);
         b2Body* createTestShape(void* userPointer = nullptr);
+		b2Body* createBattleAxe(void* userPointer = nullptr);
+		b2Body* createSwordBasic(void* userPointer = nullptr);
+
 };
 
 #endif // PHYSICSFACTORY_H

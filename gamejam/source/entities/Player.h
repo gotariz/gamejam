@@ -15,6 +15,8 @@ class Player : public Object
 
         Object*     weapon = nullptr;
 
+		int health = 100;
+
         float decceleration = 18.0f;
         float acceleration = 30.0f; // world units per second
         float maxMoveSpeed = 6.0f; // world units per second
