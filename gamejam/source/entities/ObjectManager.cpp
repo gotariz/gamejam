@@ -1,0 +1,151 @@
+#include "ObjectManager.h"
+
+ObjectManager::ObjectManager()
+{
+    //ctor
+}
+
+ObjectManager::~ObjectManager()
+{
+    //dtor
+}
+
+void ObjectManager::initialise()
+{
+
+}
+
+void ObjectManager::setPhysicsWorld(b2World* physicsWorld)
+{
+    physics_world = physicsWorld;
+}
+
+void ObjectManager::update()
+{
+    for (unsigned i = 0; i < m_objects.size(); ++i)
+    {
+        Object* object = m_objects.at(i);
+        object->onUpdate();
+    }
+
+    // PHYSICS_UPDATE
+	accumulator += gdata.m_timeDelta;
+	while(accumulator > 0)
+    {
+        updatePhysicsWorld();
+    }
+}
+
+void ObjectManager::updatePhysicsWorld()
+{
+
+    for (unsigned i = 0; i < m_objects.size(); ++i)
+    {
+        Object* object = m_objects.at(i);
+        object->onPrePhysicsUpdate();
+    }
+
+    float timeStep = accumulator > MAX_TIME_STEP ? MAX_TIME_STEP : accumulator;
+	float timeStep_seconds = timeStep / 1000.f;
+	physics_world->Step(timeStep_seconds, MAX_POSITION_ITERATIONS, MAX_VELOCITY_ITERATIONS);
+    accumulator -= timeStep;
+
+    for (unsigned i = 0; i < m_objects.size(); ++i)
+    {
+        Object* object = m_objects.at(i);
+        object->onPostPhysicsUpdate();
+    }
+}
+
+void ObjectManager::draw()
+{
+    for (unsigned i = 0; i < m_objects.size(); ++i)
+    {
+        m_objects.at(i)->onDraw();
+    }
+}
+
+unsigned ObjectManager::getValidID()
+{
+    return idCounter++;
+}
+
+bool ObjectManager::find(Object* object)
+{
+    bool result = false;
+    for (unsigned i = 0; i < m_objects.size(); ++i)
+    {
+        if (m_objects.at(i) == object)
+        {
+            result = true;
+            i = m_objects.size();
+        }
+    }
+
+    return result;
+}
+
+void ObjectManager::addObject(Object* object)
+{
+    if (!find(object))
+    {
+        m_objects.push_back(object);
+    }
+}
+
+void ObjectManager::removeObject(Object* object)
+{
+    int index = -1;
+
+    for (unsigned i = 0; i < m_objects.size(); ++i)
+    {
+        if (m_objects.at(i) == object)
+        {
+            index = i;
+            i = m_objects.size();
+        }
+    }
+
+    // swap with last object then remove
+    if (index != -1)
+    {
+        m_objects.at(index) = m_objects.at( m_objects.size() - 1);
+        m_objects.erase( m_objects.end() );
+    }
+}
+
+void ObjectManager::removeObject(int id)
+{
+    int index = -1;
+
+    for (unsigned i = 0; i < m_objects.size(); ++i)
+    {
+        if (m_objects.at(i)->getID() == id)
+        {
+            index = i;
+            i = m_objects.size();
+        }
+    }
+
+    if (index != -1)
+    {
+        m_objects.at(index) = m_objects.at( m_objects.size() - 1);
+        m_objects.erase( m_objects.end() );
+    }
+}
+
+Object* ObjectManager::getObject(int id)
+{
+    Object* result = nullptr;
+    for (unsigned i = 0; i < m_objects.size(); ++i)
+    {
+        if (m_objects.at(i)->getID() == id)
+        {
+            result = m_objects.at(i);
+            i = m_objects.size();
+        }
+    }
+
+    return result;
+}
+

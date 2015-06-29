@@ -1,3 +1,14 @@
+#Project Files
+Debug/
+gamejam.sdf
+gamejam.sln
+gamejam.suo
+gamejam.v12.suo
+gamejam/gamejam.filters
+gamejam/gamejam.vcxproj
+gamejam/gamejam.vcxproj.user
+gamejam/Debug/
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
