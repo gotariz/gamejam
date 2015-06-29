@@ -47,9 +47,17 @@ void StateGame::load()
 	d_inputHandler.init();
 	d_inputHandler.m_player = player;
 
-	obj = new Object();
-	obj->setPhysicsObject(factory.createKinematicPlayer(0, 0, obj));
-	manager.addObject(obj);
+	wep = new MeleeWeapon();
+	wep->setPhysicsObject(factory.createSwordBasic(wep));
+	player->addChild(wep);
+	wep->setPosition(Vector2(0,0));
+	//manager.addObject(wep);
+
+	enemy = new Object;
+	enemy->setPhysicsObject(factory.createKinematicPlayer(0, 0, enemy));
+	enemy->setPosition(Vector2(0, 0));
+	enemy->m_name = "Object: enemy";
+	manager.addObject(enemy);
 
 	img.setTexture(assets.getTexture("loading"));
 
@@ -90,7 +98,7 @@ void StateGame::draw()
 	world->DrawDebugData();
 
 
-	purista12->drawString(200, 200, "this is a test ;)");
+	//purista12->drawString(200, 200, "this is a test ;)");
 	
 	// flip the buffer
 	SDL_RenderPresent(gdata.renderer);

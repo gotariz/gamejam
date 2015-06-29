@@ -20,6 +20,7 @@
 #include "entities/Object.h"
 #include "entities/Player.h"
 #include "entities/ObjectManager.h"
+#include "entities/MeleeWeapon.h"
 
 #include "video/AnimatedImage.h"
 #include "video/Image.h"
@@ -67,8 +68,9 @@ class StateGame : public IState
 
 		// entities
 		ObjectManager		manager;
-		Player*				player = nullptr;
-		Object*				obj = nullptr;
+		Player*				player	= nullptr;
+		MeleeWeapon*		wep		= nullptr;
+		Object*				enemy = nullptr;
 
 		// physics
 		b2World*			world = nullptr;

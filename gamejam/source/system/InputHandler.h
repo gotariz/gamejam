@@ -48,6 +48,8 @@ class InputHandler
 		KeyboardKey* cameraU;
 		KeyboardKey* cameraD;
 
+		KeyboardKey* quit;
+
 
 };
 

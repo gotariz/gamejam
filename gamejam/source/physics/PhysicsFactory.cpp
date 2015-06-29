@@ -206,13 +206,79 @@ b2Vec2* PhysicsFactory::getRealCoords(b2Vec2 vertices[], int count)
         //vec.x *= -1;
         vec.y *= -1;
 
+		vec.rotate(-90);
+
         vertices[i].Set(vec.x,vec.y);
 
     }
     return vertices;
 }
 
+b2Body* PhysicsFactory::createBattleAxe(void* userPointer)
+{
+	b2Vec2 v1[8];
+	v1[0].Set(0, 0);
+	
+	//top
+	v1[1].Set(0.5, 0.75);
+	v1[2].Set(1, 1);
+	v1[3].Set(1.5, 0.75);
 
+	v1[4].Set(1.8, 0);
+
+	//bottom (mirror top)
+	v1[5].Set(1.5, -0.75);
+	v1[6].Set(1, -1);
+	v1[7].Set(0.5, -0.75);
+
+	b2PolygonShape polygon;
+	polygon.Set(v1, 8);
+
+	b2FixtureDef f1;
+	f1.shape = &polygon;
+	f1.isSensor = true;
+	f1.density = 1.0f;
+
+	b2BodyDef polygon_bd;
+
+	polygon_bd.type = b2_kinematicBody;
+	//polygon_bd.bullet = true;
+	b2Body* polygon_body = m_world->CreateBody(&polygon_bd);
+	polygon_body->CreateFixture(&f1);
+	return polygon_body;
+}
+
+
+b2Body* PhysicsFactory::createSwordBasic(void* userPointer)
+{
+	b2Vec2 v1[4];
+	//top
+	v1[0].Set(0, 0.1);
+	v1[1].Set(2, 0.1);
+
+	//bottom (mirror top)
+	v1[2].Set(2, -0.1);
+	v1[3].Set(0, -0.1);
+
+	b2PolygonShape polygon;
+	polygon.Set(v1, 4);
+
+	b2FixtureDef f1;
+	f1.shape = &polygon;
+	f1.isSensor = true;
+	f1.density = 1.0f;
+
+	b2BodyDef polygon_bd;
+
+	f1.filter.categoryBits = CF_SENSOR;     // what the object is
+	f1.filter.maskBits = CF_ALL;			// what the object collides with
+
+	polygon_bd.type = b2_kinematicBody;
+	//polygon_bd.bullet = true;
+	b2Body* polygon_body = m_world->CreateBody(&polygon_bd);
+	polygon_body->CreateFixture(&f1);
+	return polygon_body;
+}
 
 
 
