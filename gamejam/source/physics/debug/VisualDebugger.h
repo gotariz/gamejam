@@ -27,14 +27,13 @@ class VisualDebugger : public b2Draw
 
     public: //inliners
 
-        inline Vector2 CartToScreen(b2Vec2 point)
-        {
-            Vector2 pos = gdata.toPixels(point.x, point.y);
-            pos.x -= cam->getScreenX();
-            pos.y -= cam->getScreenY();
-            return pos;
-        }
-
+		Vector2 CartToScreen(b2Vec2 point)
+		{
+			Vector2 pos = gdata.toPixels(point.x, point.y);
+			pos.x -= cam->getScreenX();
+			pos.y -= cam->getScreenY();
+			return pos;
+		}
 
         //inline sf::Color GLColorToSFML(const b2Color &color, sf::Uint8 alpha = 255)
         //{ return sf::Color(static_cast<sf::Uint8>(color.r * 255), static_cast<sf::Uint8>(color.g * 255), static_cast<sf::Uint8>(color.b * 255), alpha); }

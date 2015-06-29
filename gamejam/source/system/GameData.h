@@ -15,8 +15,8 @@ class GameData
 
     public: // variables
 
-		int mousex = 0;
-		int mousey = 0;
+		int mousea = 0;
+		int mouseb = 0;
 
 		int m_what = 0;
 		AssetManager*	assets = nullptr;

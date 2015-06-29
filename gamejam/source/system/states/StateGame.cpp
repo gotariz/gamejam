@@ -1,7 +1,5 @@
 #include "StateGame.h"
 
-
-
 StateGame::StateGame() : IState(STATE_GAME)
 {
     //ctor
@@ -53,6 +51,7 @@ void StateGame::load()
 
 	img.setTexture(assets.getTexture("loading"));
 
+	level.init();
 
     loading = false;
 }
@@ -83,6 +82,8 @@ void StateGame::draw()
 {
 	//aimg.m_angle += 90.f / 60.f;
 	SDL_RenderClear(gdata.renderer);
+
+	level.draw();
 
 	img.renderImage(gdata.renderer);
 	manager.draw();

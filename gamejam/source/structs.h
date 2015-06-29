@@ -3,6 +3,20 @@
 
 class Image;
 
+struct Cell
+{
+	int row;
+	int col;
+	bool occupied;
+
+	Cell(int r = 0, int c = 0, bool o = false)
+	{
+		row = r;
+		col = c;
+		occupied = o;
+	}
+};
+
 struct guiEvent
 {
     guiEvent(int a = -1, int b = -1) : id(a), type(b) {}

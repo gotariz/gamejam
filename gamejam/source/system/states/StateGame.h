@@ -15,7 +15,7 @@
 #include "physics/debug/VisualDebugger.h"
 #include "physics/ContactListener.h"
 
-//#include "level/Level.h"
+#include "level/Level.h"
 
 #include "entities/Object.h"
 #include "entities/Player.h"
@@ -64,6 +64,9 @@ class StateGame : public IState
 
 		// input
 		InputHandler		d_inputHandler;
+
+		// level
+		Level level;
 
 		// entities
 		ObjectManager		manager;
