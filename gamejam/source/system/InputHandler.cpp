@@ -99,6 +99,8 @@ void InputHandler::debug_events()
 
 void InputHandler::handleMouseEvents()
 {
+
+	SDL_GetMouseState(&gdata.mousex, &gdata.mousey);
     //if (lastUsed == 0)
     //{
     //    Vector2 mousePosition = Vector2(sf::Mouse::getPosition(*gdata.m_window).x,sf::Mouse::getPosition(*gdata.m_window).y);

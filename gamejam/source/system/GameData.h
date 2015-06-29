@@ -28,6 +28,9 @@ class GameData
 		float			zoom = 1.0;
 		int				m_timeDelta = 0;
 
+		int mousex = 0;
+		int mousey = 0;
+
     public:
 		void updateKeys();
 		vector<KeyboardKey>	keys;
