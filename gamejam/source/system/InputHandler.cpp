@@ -99,7 +99,6 @@ void InputHandler::debug_events()
 
 void InputHandler::handleMouseEvents()
 {
-
 	SDL_GetMouseState(&gdata.mousex, &gdata.mousey);
     //if (lastUsed == 0)
     //{
