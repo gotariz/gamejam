@@ -76,6 +76,8 @@ class Object
 
         virtual int     getID();
 
+		int				objType = OBJ_NOTSET;
+
 
 };
 

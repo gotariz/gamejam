@@ -140,10 +140,6 @@ void GameData::updateKeys()
 	keys[SDL_SCANCODE_MOUSE_MIDDLE].updateKey(SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_MIDDLE));
 	keys[SDL_SCANCODE_MOUSE_RIGHT].updateKey(SDL_GetMouseState(NULL, NULL) &SDL_BUTTON(SDL_BUTTON_RIGHT));
 
-	if (keys[SDL_SCANCODE_MOUSE_LEFT].isKeyDown)
-	{
-		cout << "woohoo" << endl;
-	}
 }
 
 /*

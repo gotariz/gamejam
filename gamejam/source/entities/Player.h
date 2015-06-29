@@ -3,6 +3,7 @@
 
 #include "general.h"
 #include "entities/Object.h"
+#include "entities/MeleeWeapon.h"
 #include "animation/Animation.h"
 
 class Player : public Object
@@ -13,9 +14,8 @@ class Player : public Object
 
     public:
 
-        Object*     weapon = nullptr;
-
-		int health = 100;
+        MeleeWeapon*		weapon = nullptr;
+		int					health = 100;
 
         float decceleration = 18.0f;
         float acceleration = 30.0f; // world units per second

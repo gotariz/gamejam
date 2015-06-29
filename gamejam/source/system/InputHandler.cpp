@@ -29,6 +29,8 @@ void InputHandler::init()
 	cameraR = &gdata.keys[SDL_SCANCODE_KP_6];
 	cameraU = &gdata.keys[SDL_SCANCODE_KP_8];
 	cameraD = &gdata.keys[SDL_SCANCODE_KP_2];
+
+	quit = &gdata.keys[SDL_SCANCODE_ESCAPE];
 }
 
 void InputHandler::handleEvents()
@@ -81,6 +83,8 @@ void InputHandler::handlePlayerEvents()
             m_rawVelocity.Set( m_rawVelocity.x / m_rawVelocity.Length(), m_rawVelocity.y / m_rawVelocity.Length() );
         }
     }
+
+	if (quit->isKeyPressed)			{ gdata.running = false; }
 }
 
 void InputHandler::debug_events()
@@ -99,19 +103,19 @@ void InputHandler::debug_events()
 
 void InputHandler::handleMouseEvents()
 {
-	SDL_GetMouseState(&gdata.mousea, &gdata.mouseb);
-    //if (lastUsed == 0)
-    //{
-    //    Vector2 mousePosition = Vector2(sf::Mouse::getPosition(*gdata.m_window).x,sf::Mouse::getPosition(*gdata.m_window).y);
+	SDL_GetMouseState(&gdata.mousex, &gdata.mousey);
+	Vector2 mouseposition = Vector2(gdata.mousex, gdata.mousey);
+	Vector2 playerposition = m_player->getAbsolutePosition();
+	playerposition = gdata.toPixels(playerposition.x - gdata.camera->m_x, playerposition.y - gdata.camera->m_y);
+	Vector2 distance = mouseposition - playerposition;
 
-    //    Vector2 playerPosition = m_player->getAbsolutePosition();
-    //    playerPosition = gdata.toPixels(playerPosition.x - gdata.m_camera->m_x, playerPosition.y - gdata.m_camera->m_y);
+	if (gdata.keys[SDL_SCANCODE_MOUSE_LEFT].isKeyPressed)
+	{
+		cout << "shwing" << endl;
+		m_player->weapon->active = true;
+	}
 
-    //    Vector2 distance = mousePosition - playerPosition;
-
-
-    //    m_player->setRotation( Utils::convertToAngle(360 - distance.getAngle() - 90) );
-    //}
+	m_player->setRotation(utils::toAngle(360 - distance.getAngle()));
 }
 
 void InputHandler::handleControllerEvents()

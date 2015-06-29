@@ -51,6 +51,7 @@ class InputHandler
 		KeyboardKey* quit;
 
 
+
 };
 
 #endif // INPUTHANDLER_H

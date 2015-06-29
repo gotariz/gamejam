@@ -40,6 +40,7 @@ void StateGame::load()
 	player->setPhysicsObject(factory.createPlayer(2, 2, player));
 	player->setRotation(0);
 	player->m_name = "Object: player";
+	player->objType = OBJ_PLAYER;
 	manager.addObject(player);
 
 	d_inputHandler.init();
@@ -49,12 +50,15 @@ void StateGame::load()
 	wep->setPhysicsObject(factory.createSwordBasic(wep));
 	player->addChild(wep);
 	wep->setPosition(Vector2(0,0));
+	player->weapon = wep;
+	wep->objType = OBJ_WEAPON;
 	//manager.addObject(wep);
 
 	enemy = new Object;
 	enemy->setPhysicsObject(factory.createKinematicPlayer(0, 0, enemy));
 	enemy->setPosition(Vector2(0, 0));
 	enemy->m_name = "Object: enemy";
+	enemy->objType = OBJ_NPC;
 	manager.addObject(enemy);
 
 	img.setTexture(assets.getTexture("loading"));
@@ -91,7 +95,7 @@ void StateGame::draw()
 	//aimg.m_angle += 90.f / 60.f;
 	SDL_RenderClear(gdata.renderer);
 
-	level.draw();
+	//level.draw();
 
 	img.renderImage(gdata.renderer);
 	manager.draw();

@@ -12,7 +12,9 @@ public:
 	virtual ~MeleeWeapon();
 
 	bool active = false;
+	int elapsedTime;
 
+	virtual void onUpdate();
 	virtual void onEnterCollision(Object* objectB);
 	virtual void onExitCollision(Object* objectB);
 	

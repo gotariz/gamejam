@@ -1,6 +1,14 @@
 #ifndef ENUMS_H_INCLUDED
 #define ENUMS_H_INCLUDED
 
+enum objectTypes{
+	OBJ_NOTSET,
+	OBJ_PLAYER,
+	OBJ_NPC,
+	OBJ_WALL,
+	OBJ_WEAPON,
+};
+
 enum SDLScancodeMouse
 {
 	SDL_SCANCODE_MOUSE_LEFT			= 290,

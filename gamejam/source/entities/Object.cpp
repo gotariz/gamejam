@@ -27,6 +27,10 @@ void Object::onCollision(Object* objectB)
 
 void Object::onUpdate()
 {
+	for (int i = 0; i < m_children.size(); ++i)
+	{
+		m_children.at(i)->onUpdate();
+	}
 }
 
 void Object::onPrePhysicsUpdate()
