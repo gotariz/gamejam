@@ -17,6 +17,9 @@ public:
 	virtual void onUpdate();
 	virtual void onEnterCollision(Object* objectB);
 	virtual void onExitCollision(Object* objectB);
+	virtual void onCollision(Object* objectB);
+
+	vector <Object*> hitList;
 	
 };
 

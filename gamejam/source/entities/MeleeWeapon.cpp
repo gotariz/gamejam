@@ -8,6 +8,25 @@ MeleeWeapon::MeleeWeapon()
 
 MeleeWeapon::~MeleeWeapon()
 {
+	
+}
+
+void MeleeWeapon::onCollision(Object* objectB)
+{
+	cout << "collisions" << endl;
+
+	// check for collisions
+	if (objectB->objType == OBJ_NPC)
+	{
+		// if obj is not in hitlist: addit and do collision code
+		if (std::find(hitList.begin(), hitList.end(), objectB) == hitList.end())
+		{
+			hitList.push_back(objectB);
+			// dmg enemy
+			cout << "Hit enemy" << endl;
+		}
+		//else ignore it
+	}
 }
 
 
@@ -36,16 +55,8 @@ void MeleeWeapon::onUpdate()
 		{
 			active = false;
 			elapsedTime = 0;
-			cout << "Finished" << endl;
-		}
-
-		// check for collisions
-		for (int i = 0; i < m_collidingObjects.size(); i++)
-		{
-			if (m_collidingObjects.at(i)->objType == OBJ_NPC)
-			{
-				cout << "Hit enemy" << endl;
-			}
+			cout << "Finished" << endl; 
+			hitList.clear();
 		}
 	}
 }
