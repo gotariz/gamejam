@@ -29,7 +29,8 @@ class Object
 
 
         // this should be private and used through functions
-        std::vector<Object*>    m_collidingObjects;
+        vector<Object*>		m_collidingObjects;
+		vector<Object*>		getChildren(){ return m_children; }
 
     public: //events
         virtual void onCreate();

@@ -61,11 +61,31 @@ void ObjectManager::updatePhysicsWorld()
 		Object* o = m_objects.at(i);
 		for (int j = 0; j < o->m_collidingObjects.size(); ++j)
 		{
-			//cout << "objects" << endl;
+			//cout << "name:" << o->m_name << endl;
 			o->onCollision(o->m_collidingObjects.at(j));
 		}
+		vector<Object*> children = o->getChildren();
+		for (int j = 0; j < children.size(); j++)
+		{
+			callChildrenOnCollision(children.at(j));
+		}
+
 	}
 
+}
+
+void ObjectManager::callChildrenOnCollision(Object* obj)
+{
+	for (int j = 0; j < obj->m_collidingObjects.size(); ++j)
+	{
+		obj->onCollision(obj->m_collidingObjects.at(j));
+	}
+
+	vector<Object*> children = obj->getChildren();
+	for (int j = 0; j < children.size(); j++)
+	{
+		callChildrenOnCollision(children.at(j));
+	}
 }
 
 void ObjectManager::draw()

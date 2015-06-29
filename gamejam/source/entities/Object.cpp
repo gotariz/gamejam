@@ -22,7 +22,7 @@ void Object::onDestroy()
 
 void Object::onCollision(Object* objectB)
 {
-
+	//cout << "object: " << m_name << endl;
 }
 
 void Object::onUpdate()

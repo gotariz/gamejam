@@ -27,6 +27,8 @@ class ObjectManager
 
         void updatePhysicsWorld();
 
+		void callChildrenOnCollision(Object* obj);
+
 
     private:
         b2World*                physics_world = nullptr;
