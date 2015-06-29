@@ -37,7 +37,7 @@ class Object
         virtual void onUpdate();
         virtual void onPrePhysicsUpdate();
         virtual void onPostPhysicsUpdate();
-        virtual void onCollision();
+		virtual void onCollision(Object* objectB);
         virtual void onEnterCollision(Object* objectB);
         virtual void onExitCollision(Object* objectB);
         virtual void onDraw();

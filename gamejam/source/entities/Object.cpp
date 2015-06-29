@@ -20,7 +20,7 @@ void Object::onDestroy()
 
 }
 
-void Object::onCollision()
+void Object::onCollision(Object* objectB)
 {
 
 }

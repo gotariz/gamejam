@@ -55,6 +55,16 @@ void ObjectManager::updatePhysicsWorld()
         Object* object = m_objects.at(i);
         object->onPostPhysicsUpdate();
     }
+
+	for (unsigned i = 0; i < m_objects.size(); ++i)
+	{
+		Object* o = m_objects.at(i);
+		for (int j = 0; j < o->m_collidingObjects.size(); ++j)
+		{
+			o->onCollision(o->m_collidingObjects.at(j));
+		}
+	}
+
 }
 
 void ObjectManager::draw()
